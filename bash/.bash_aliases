@@ -12,3 +12,8 @@ nv() {
 	  echo "Neovim not installed!"
   fi
 }
+
+alias vlc='vlv &'
+
+# No idea why I added this
+#. "$HOME/.local/bin/env"

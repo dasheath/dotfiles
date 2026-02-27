@@ -1,6 +1,9 @@
-set expandtab
+set nu
 set tabstop=4
 set shiftwidth=4
+set expandtab
+set smartindent
 set softtabstop=4
-set number
+
+syntax on
 
