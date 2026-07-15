@@ -7,5 +7,9 @@
 	defaultBranch = main
 [alias]
 	s = status
+  b = branch
+  co = checkout
 	rv = remote -v
 	aliases = !git config --get-regexp \"^alias\\\\.\" | sed \"s/^alias\\.//\"
+  rrr = reset --hard HEAD
+
