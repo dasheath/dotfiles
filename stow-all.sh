@@ -1,8 +1,8 @@
 #!/bin/bash
 
-stow awesome
-stow bash
-stow git
-stow nvim
-stow vim
+stow -t ~ awesome
+stow -t ~ bash
+stow -t ~ git
+stow -t ~ nvim
+stow -t ~ vim
 
