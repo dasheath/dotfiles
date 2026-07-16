@@ -12,3 +12,8 @@ map("n", "<leader>pv", ":Ex<CR>")
 -- Telescope helpers
 map("n", "<leader>ff", ":Telescope find_files<CR>")
 map("n", "<leader>fg", ":Telescope live_grep<CR>")
+
+-- Nvim-Tree helpers
+map("n", "<leader>r", "<cmd>NvimTreeRefresh<CR>")
+map("n", "<leader>n", "<cmd>NvimTreeFindFile<CR>")
+

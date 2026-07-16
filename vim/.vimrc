@@ -5,5 +5,4 @@ set expandtab
 set smartindent
 set softtabstop=4
 
-syntax on
 
