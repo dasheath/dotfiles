@@ -1,5 +1,7 @@
 alias rebash="source ~/.bashrc"
 
+alias vi='nv'
+
 nv() {
   local open_in_dir="."
   if [[ $# -eq 1 ]]; then
