@@ -23,6 +23,6 @@ ssh-add ~/.ssh/id_ed25519
 3. Run the initial-setup.sh script:
 
 ```bash
-wget https://raw.githubusercontent.com/dasheath/dotfiles/refs/heads/main/initial-setup.sh | bash
+wget -q -O - https://raw.githubusercontent.com/dasheath/dotfiles/refs/heads/main/initial-setup.sh | bash
 ```
 
