@@ -60,6 +60,9 @@ popd >/dev/null
 
 
 # Stow all the configs using the script in the repo
+#  - Stow should be installed via nix home-manager
+#  - If the ansible step for setting up and enabling the packages flake
+#    does not work or run, this fails gracefully.
 pushd "$TARGET_DIRECTORY" >/dev/null
 bash stow-all.sh
 popd >/dev/null
