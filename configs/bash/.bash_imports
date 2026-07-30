@@ -1,0 +1,25 @@
+# Source other bash configuration files
+# This is a simple way to do this bc bash_aliases is sourced by the ubuntu
+# default bashrc
+
+if [[ -f ~/.bash_functions ]]; then
+  . ~/.bash_functions
+fi
+
+if [[ -f ~/.bash_prompt ]]; then
+# Determine whether I like this or starship better
+#  . ~/.bash_prompt
+fi
+
+
+# Setup for starship
+# if command -v starship ; then
+#  eval "$(starship init bash)"
+#fi
+
+
+# Setup for direnv
+if command -v direnv ; then
+ eval "$(direnv hook bash)"
+fi
+

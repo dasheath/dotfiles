@@ -1,0 +1,18 @@
+- name: Check if Tailscale is installed
+  stat:
+    path: /usr/bin/tailscale
+  register: tailscale_installed
+
+- name: Install Tailscale if missing
+  shell: |
+    curl -fsSL https://tailscale.com/install.sh | sh
+  args:
+    executable: /bin/bash
+  when: tailscale_installed.stat.exists == false
+  become: true
+
+- name: Enable and start Tailscale
+  systemd:
+    name: tailscaled
+    state: started
+    enabled: yes

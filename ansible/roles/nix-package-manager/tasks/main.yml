@@ -1,0 +1,49 @@
+- name: Check if Nix Package Manager is installed
+  ansible.builtin.command:
+    cmd: /nix/var/nix/profiles/default/bin/nix --version
+  register: nix_installed
+  failed_when: false
+  changed_when: false
+
+- name: Install Nix if missing
+  shell: |
+    curl -L https://nixos.org/nix/install | sh -s -- --daemon
+  args:
+    executable: /bin/bash
+  when: nix_installed.stat.exists == false
+  become: true
+  
+- name: Source the environment file and run a command
+  shell:
+    cmd: source /etc/profile.d/nix.sh
+  args:
+    executable: /bin/bash
+
+- name: Enable flakes part 1
+  shell: |
+    sudo mkdir -p /etc/nix
+  args:
+    executable: /bin/bash
+  when: nix_installed.stat.exists == false
+  become: true
+
+- name: Enable flakes part 2
+  shell: | 
+    echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
+  args:
+    executable: /bin/bash
+  when: nix_installed.stat.exists == false
+  become: true
+  
+  
+# Check for lininefile
+- name: Check for flakes enabled in nix.conf
+  become: true
+  blockinfile:
+    path: "/etc/nix/nix.conf"
+    regexp: '^experimental-features\s*=\s*.*flakes.*'
+    state: present
+  check_mode: yes
+  register: flakes_check
+  failed_when: flakes_check.changed
+
