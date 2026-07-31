@@ -23,6 +23,7 @@ ssh-add ~/.ssh/id_ed25519
 3. Run the initial-setup.sh script:
 
 ```bash
-bash <(wget -qO- https://raw.githubusercontent.com/dasheath/dotfiles/refs/heads/main/initial-setup.sh)
+wget -qO /tmp/dotfiles-installer.sh https://raw.githubusercontent.com/dasheath/dotfiles/refs/heads/main/initial-setup.sh
+bash /tmp/dotfiles-installer.sh
 ```
 
