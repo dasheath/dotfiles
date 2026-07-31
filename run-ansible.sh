@@ -14,6 +14,6 @@ if [[ ! -d "$ANSIBLE_DIR" ]]; then
 fi
 
 pushd "$ANSIBLE_DIR" > /dev/null
-ansible-playbook site.yml --ask-become-pass
+ansible-playbook site.yml
 popd > /dev/null
 

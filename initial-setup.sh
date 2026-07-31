@@ -17,18 +17,10 @@ REPO_URL="git@github.com:dasheath/dotfiles.git"
 ANSIBLE_DIR="$TARGET_DIRECTORY/ansible"
 DOTFILES_PRESENT=true
 
-# Make sure the user is in sudoer group
-in_sudo=0
-for curgroup in $(groups); do
-  if [[ $curgroup == "sudo" ]]; then
-    in_sudo=1
-  fi
-done
-
-if [[ ! $in_sudo ]]; then
-  echo "Not sudo! Add user to sudo with:"
-  echo "\tsudo usermod -aG sudo $USER"
-  exit 1 
+# Authenticate once
+if ! sudo -v; then
+  echo "❗ User does not have sudo access."
+  exit 1
 fi
   
 # Ensure we don't clobber an existing dotfiles folder
@@ -42,16 +34,22 @@ fi
 
 # Start off by installing a few needed packages
 echo "🟢 Updating apt cache and adding packages"
-sudo apt update &>/dev/null
-sudo apt install -y git ansible python3
+apt update &>/dev/null
+apt install -y \
+  git \
+  ansible \
+  python3
 
 # Clone the repository to TARGET_DIRECTORY
 if [[ ! $DOTFILES_PRESENT ]]; then
   echo "📁 Creating dotfiles folder"
   mkdir $TARGET_DIRECTORY
   pushd $TARGET_DIRECTORY > /dev/null
-  git clone "$REPO_URL" .
+  git clone "$REPO_URL" "$TARGET_DIRECTORY"
   popd > /dev/null
+else
+  echo "Dotfiles repo exists. Updating..."
+  git -C "$TARGET_DIRECTORY" pull --ff-only
 fi
 
 # Run ansible playbook:
