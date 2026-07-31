@@ -8,6 +8,9 @@ if [[ ! -d "$CFG_DIR" ]]; then
     exit 1
 fi
 
+# Check version of nix-env
 nix-env --version
+
+# One-time setup for home-manager
 nix run github:nix-community/home-manager -- init --switch
 

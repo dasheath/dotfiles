@@ -72,3 +72,8 @@ bash "$TARGET_DIRECTORY/stow-all.sh"
 # Nix package manager home manager setup
 bash "$TARGET_DIRECTORY/setup-nix-home-manager.sh"
 
+# Font refresh to use the font installed via nix :)
+fc-cache -fv
+
+
+echo "Log out and log back in to enable everything to refresh properly"

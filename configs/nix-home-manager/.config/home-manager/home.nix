@@ -3,7 +3,6 @@
 {
   imports = [
     ./modules/packages.nix
-    ./modules/nerd-font.nix
   ];
   home.username = "heath";
   home.homeDirectory = "/home/heath";

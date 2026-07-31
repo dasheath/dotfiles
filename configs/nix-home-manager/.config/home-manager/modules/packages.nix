@@ -4,6 +4,13 @@
   home.packages = with pkgs; [
     xclip
     stow
+    curl
+    
+    # Yeah
+    neovim
+    
+    # Font
+    nerd-fonts.jetbrains-mono
 
     # Modern system packages
     # https://github.com/ibraheemdev/modern-unix
