@@ -23,6 +23,14 @@ if ! sudo -v; then
   exit 1
 fi
   
+# Ansible playbook failing when using newer 'sudo-rs'
+# Switch to older C-based implementation
+if sudo --version | grep -q sudo-rs; then
+    echo "Replacing sudo-rs with standard sudo"
+    sudo apt remove -y sudo-rs
+    sudo apt install -y sudo
+fi
+
 # Ensure we don't clobber an existing dotfiles folder
 if [[ -d "$TARGET_DIRECTORY" ]]; then
   echo "⏩ Dotfiles folder already exists. Will skip the git clone!"  
@@ -34,11 +42,8 @@ fi
 
 # Start off by installing a few needed packages
 echo "🟢 Updating apt cache and adding packages"
-apt update &>/dev/null
-apt install -y \
-  git \
-  ansible \
-  python3
+sudo apt update &>/dev/null
+sudo apt install -y git ansible python3 sudo stow
 
 # Clone the repository to TARGET_DIRECTORY
 if [[ ! $DOTFILES_PRESENT ]]; then
@@ -58,11 +63,12 @@ fi
 #  - Enable unattended upgrades
 bash "$TARGET_DIRECTORY/run-ansible.sh"
 
-
 # Stow all the configs using the script in the repo
 #  - Stow should be installed via nix home-manager
 #  - If the ansible step for setting up and enabling the packages flake
 #    does not work or run, this fails gracefully.
 bash "$TARGET_DIRECTORY/stow-all.sh"
 
+# Nix package manager home manager setup
+bash "$TARGET_DIRECTORY/setup-nix-home-manager.sh"
 
