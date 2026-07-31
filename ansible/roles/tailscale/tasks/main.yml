@@ -1,18 +1,38 @@
-- name: Check if Tailscale is installed
-  stat:
-    path: /usr/bin/tailscale
-  register: tailscale_installed
-
-- name: Install Tailscale if missing
-  shell: |
-    curl -fsSL https://tailscale.com/install.sh | sh
-  args:
-    executable: /bin/bash
-  when: tailscale_installed.stat.exists == false
+---
+- name: Create keyrings directory
+  ansible.builtin.file:
+    path: /usr/share/keyrings
+    state: directory
+    mode: "0755"
   become: true
 
-- name: Enable and start Tailscale
-  systemd:
+- name: Download Tailscale GPG key
+  ansible.builtin.get_url:
+    url: "https://pkgs.tailscale.com/stable/ubuntu/{{ ansible_distribution_release }}.noarmor.gpg"
+    dest: /usr/share/keyrings/tailscale-archive-keyring.gpg
+    mode: "0644"
+  become: true
+
+- name: Add Tailscale APT repository
+  ansible.builtin.apt_repository:
+    repo: >-
+      deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg]
+      https://pkgs.tailscale.com/stable/ubuntu
+      {{ ansible_distribution_release }} main
+    filename: tailscale
+    state: present
+    update_cache: true
+  become: true
+
+- name: Install Tailscale
+  ansible.builtin.apt:
+    name: tailscale
+    state: present
+  become: true
+
+- name: Enable and start tailscaled
+  ansible.builtin.systemd:
     name: tailscaled
+    enabled: true
     state: started
-    enabled: yes
+  become: true

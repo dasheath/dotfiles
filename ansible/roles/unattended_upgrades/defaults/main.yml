@@ -1,0 +1,3 @@
+---
+# Run at 3 AM
+unattended_upgrades_time: "03:00"
