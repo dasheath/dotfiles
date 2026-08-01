@@ -37,3 +37,10 @@
     mode: "0644"
   become: true
 
+
+# Stow the home manager files now
+# Run the nix run command to setup home manager now
+#- name: Symlink the home-manager configs
+#  ansible.builtin.file:
+#    dest: file.123.txt
+#    state: exists

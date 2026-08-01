@@ -3,6 +3,8 @@
 {
   imports = [
     ./modules/packages.nix
+    ./modules/tmux.nix
+    ./modules/direnv.nix
   ];
   home.username = "heath";
   home.homeDirectory = "/home/heath";

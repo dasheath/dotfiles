@@ -5,6 +5,7 @@
     xclip
     stow
     curl
+    gnumake
     
     # Yeah
     neovim
