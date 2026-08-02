@@ -1,0 +1,4 @@
+---
+
+# Keyring stuff that multiple roles do
+# Update cache with a longish timeout of like 10 minutes

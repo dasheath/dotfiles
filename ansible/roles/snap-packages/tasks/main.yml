@@ -1,0 +1,39 @@
+---
+- name: Ensure snapd is installed via APT
+  ansible.builtin.apt:
+    name: snapd
+    state: present
+    update_cache: true
+  when: ansible_os_family == "Debian"
+
+- name: Ensure snapd is installed via DNF
+  ansible.builtin.dnf:
+    name: snapd
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Enable and start snapd systemd service
+  ansible.builtin.systemd:
+    name: snapd.service
+    state: started
+    enabled: true
+
+- name: Create symbolic link for classic snap support
+  ansible.builtin.file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    state: link
+
+- name: Install a classic snap package (e.g., VS Code)
+  community.general.snap:
+    name: "{{ item.name }}"
+    classic: "{{ item.classic | default(false) }}"
+    state: present
+  loop:
+    #- { name: 'vlc' }
+    #- { name: 'slack' }
+    - steam
+    - spotify
+    - obsidian
+    - bitwarden
+    - plex-desktop
