@@ -2,7 +2,7 @@
 
 ## Overview
 
-The aim is to manage ubuntu system config and packges. Packages are primarily managed via nix home-manager. Configs are managed through dotfiles folders here, which will be stowed using the stow command. 
+The aim is to manage ubuntu system config and packges. Packages are primarily managed via nix home-manager and snap where necessary. Configs are managed through dotfiles folders here, which will be stowed using the stow command. 
 
 There will be an initial step needed to get a fresh OS install ready to use any of this.
 This will be managed via an initial setup script which installs a couple ubuntu system packages needed to get started including git, and curl, clone this repository, and setup some system packages via ansible that cannot properly be managed by home-manager on ubuntu.

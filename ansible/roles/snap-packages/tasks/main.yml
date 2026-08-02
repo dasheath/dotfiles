@@ -30,10 +30,10 @@
     classic: "{{ item.classic | default(false) }}"
     state: present
   loop:
-    #- { name: 'vlc' }
-    #- { name: 'slack' }
-    # - { name: 'steam' }
+    - { name: 'vlc' }
+    - { name: 'slack' }
+    - { name: 'steam' }
     - { name: 'spotify' }
     - { name: 'obsidian' , classic: 'true'}
-    # - { name: 'bitwarden' }
+    - { name: 'bitwarden' }
     - { name: 'plex-desktop' }
