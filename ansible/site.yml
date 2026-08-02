@@ -2,8 +2,9 @@
 - hosts: localhost
   become: true
   roles:
-    #- unattended_upgrades
-    #- tailscale
-    #- nix-package-manager
+    - unattended_upgrades
+    - tailscale
+    - nix-package-manager
     - docker
+    - code
 

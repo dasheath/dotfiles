@@ -6,6 +6,7 @@
     stow
     curl
     gnumake
+    direnv
     
     # Yeah
     neovim
