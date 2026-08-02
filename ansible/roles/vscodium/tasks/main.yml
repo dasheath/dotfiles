@@ -1,0 +1,46 @@
+- name: Ensure APT keyring directory exists
+  ansible.builtin.file:
+    path: /usr/share/keyrings
+    state: directory
+    mode: "0755"
+
+- name: Download VSCodium signing key
+  ansible.builtin.get_url:
+    url: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+    dest: /tmp/vscodium.asc
+    mode: "0644"
+  register: vscodium_key
+
+- name: Create VSCodium APT keyring
+  ansible.builtin.command:
+    cmd: >
+      gpg --dearmor
+      --yes
+      --output /usr/share/keyrings/vscodium-archive-keyring.gpg
+      /tmp/vscodium.asc
+  when: vscodium_key.changed
+
+- name: Configure VSCodium repository
+  ansible.builtin.copy:
+    dest: /etc/apt/sources.list.d/vscodium.sources
+    mode: "0644"
+    content: |
+      Types: deb
+      URIs: https://download.vscodium.com/debs
+      Suites: vscodium
+      Components: main
+      Architectures: amd64
+      Signed-By: /usr/share/keyrings/vscodium-archive-keyring.gpg
+  register: vscodium_repo
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+  when: vscodium_repo.changed
+
+- name: Install VSCodium
+  ansible.builtin.apt:
+    name: codium
+    state: present
+
+# TODO clear out temp vscodium.asc file

@@ -1,5 +1,6 @@
 alias rebash=". ~/.bashrc"
 alias reflake="home-manager switch --flake ~/.config/home-manager"
+alias nixgc="nix-collect-garbage -d"
 
 # Source other bash configuration files
 # This is a simple way to do this bc bash_aliases is sourced by the ubuntu
