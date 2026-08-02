@@ -7,6 +7,7 @@
     curl
     gnumake
     direnv
+    tmux
     
     # Yeah
     neovim
