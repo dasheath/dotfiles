@@ -1,0 +1,15 @@
+[user]
+	email = heathamccabe@gmail.com
+	name = Heath McCabe
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
+[alias]
+	aliases = !git config --get-regexp \"^alias\\\\.\" | sed \"s/^alias\\.//\"
+	s = status
+	b = branch
+	co = checkout
+	rv = remote -v
+	rrr = reset --hard HEAD
+
