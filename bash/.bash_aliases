@@ -11,8 +11,9 @@ alias nixgc="nix-collect-garbage -d"
 # Source other bash configuration files
 # This is a simple way to do this bc bash_aliases is sourced by the ubuntu
 # default bashrc
-if [[ -f ~/.bash_imports ]]; then
-  . ~/.config/bash/.bash_imports
+IMPORTS_FILE="$HOME/.config/bash/.bash_imports"
+if [[ -f "$IMPORTS_FILE" ]]; then
+  . "$IMPORTS_FILE"
 fi
 
 # Want to run this in background by default
