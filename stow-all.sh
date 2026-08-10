@@ -17,6 +17,7 @@ if [[ -f "$HOME/.gitconfig" ]] && [[ ! -L "$HOME/.gitconfig" ]]; then
 fi
 
 stow -t ~ bash
+stow -t ~ codium
 stow -t ~ git
 stow -t ~ nix-home-manager
 stow -t ~ nvim
