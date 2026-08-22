@@ -8,6 +8,9 @@ alias cleanup="sudo apt autoremove --purge"
 alias reflake="home-manager switch --flake ~/.config/home-manager"
 alias nixgc="nix-collect-garbage -d"
 
+# Using codium as my ide for now
+alias code='codium'
+
 # Source other bash configuration files
 # This is a simple way to do this bc bash_aliases is sourced by the ubuntu
 # default bashrc

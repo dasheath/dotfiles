@@ -1,5 +1,6 @@
 {
     "git.openRepositoryInParentFolders": "always",
     "workbench.colorTheme": "HearthCode Ember Dark",
-    "workbench.iconTheme": "runescape-icon-theme"
+    "workbench.iconTheme": "runescape-icon-theme",
+    "git.autofetch": true
 }

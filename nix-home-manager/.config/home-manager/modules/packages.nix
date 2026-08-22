@@ -8,6 +8,7 @@
     gnumake
     direnv
     tmux
+    uv # python tooling
     
     # Yeah
     neovim
