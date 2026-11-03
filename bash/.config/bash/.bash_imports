@@ -6,10 +6,10 @@ if [[ -f ~/.config/bash/.bash_functions ]]; then
   . ~/.config/bash/.bash_functions
 fi
 
-#if [[ -f ~/.config/bash/.bash_prompt ]]; then
+if [[ -f ~/.config/bash/.bash_prompt ]]; then
 # Determine whether I like this or starship better
-#  . ~/.config/bash/.bash_prompt
-#fi
+  . ~/.config/bash/.bash_prompt
+fi
 
 
 # Setup for starship
