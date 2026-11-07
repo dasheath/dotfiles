@@ -7,7 +7,6 @@ files_to_import=(".bash_functions" ".bash_prompt")
 for file_to_import in "${files_to_import[@]}"; do
   file_path="$HOME/.config/bash/$file_to_import"
   if [[ -f "$file_path" ]]; then
-    echo "sourcing file now"
     . "$file_path"
   fi
 done
