@@ -12,17 +12,17 @@ for file_to_import in "${files_to_import[@]}"; do
 done
 
 # For rust lang
-if command -v cargo; then
-  . "$HOME/.cargo/env" 
+if command -v cargo > /dev/null ; then
+  . "$HOME/.cargo/env"
 fi
 
 # Setup for starship
-# if command -v starship ; then
+# if command -v starship > /dev/null  ; then
 #  eval "$(starship init bash)"
 #fi
 
 # Setup for direnv
-if command -v direnv ; then
+if command -v direnv > /dev/null ; then
  eval "$(direnv hook bash)"
 fi
 
