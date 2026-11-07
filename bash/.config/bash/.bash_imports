@@ -2,21 +2,25 @@
 # This is a simple way to do this bc bash_aliases is sourced by the ubuntu
 # default bashrc
 
-if [[ -f ~/.config/bash/.bash_functions ]]; then
-  . ~/.config/bash/.bash_functions
-fi
+files_to_import=(".bash_functions" ".bash_prompt")
 
-if [[ -f ~/.config/bash/.bash_prompt ]]; then
-# Determine whether I like this or starship better
-  . ~/.config/bash/.bash_prompt
-fi
+for file_to_import in "${files_to_import[@]}"; do
+  file_path="$HOME/.config/bash/$file_to_import"
+  if [[ -f "$file_path" ]]; then
+    echo "sourcing file now"
+    . "$file_path"
+  fi
+done
 
+# For rust lang
+if command -v cargo; then
+  . "$HOME/.cargo/env" 
+fi
 
 # Setup for starship
 # if command -v starship ; then
 #  eval "$(starship init bash)"
 #fi
-
 
 # Setup for direnv
 if command -v direnv ; then
